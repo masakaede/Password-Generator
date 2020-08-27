@@ -2,8 +2,6 @@
 var generateBtn = document.querySelector("#generate");
 
 
-//console.log(hasUpperInput, hasLowerInput, hasNumInput, hasSymInput, LengthInput)
-
 //Object of 4 criteria
 var randomFunc = {
     upper: getRandomUpper,
@@ -17,13 +15,11 @@ generateBtn.addEventListener('click', function () {
     var hasLower = confirm("Include Lowercase Letters?");
     var hasNumber = confirm("Include Numbers?");
     var hasSymbol = confirm("Include Symbols?");
-    var length = prompt("Please choose password length between 8 and 128");
-    /*var hasUpper = hasUpperInput;
-    var hasLower = hasLowerInput;
-    var hasNumber = hasNumInput;
-    var hasSymbol = hasSymInput;
-    var length = +lengthInput;*/
 
+    var length = 1
+    while (length < 8 || length > 128) {
+        length = prompt("Please choose password length between 8 and 128");
+    }
     password.innerText = generatePassword(hasUpper, hasLower, hasNumber, hasSymbol, length);
 
 });
