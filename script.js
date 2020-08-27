@@ -5,6 +5,23 @@ var hasLower;
 var hasNumber;
 var hasSymbol;
 
+//4 criteria random function
+function RandomUpper() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+function RandomLower() {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+
+function RandomNumber() {
+    return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+
+function RandomSymbol() {
+    var symbols = '!@#$%^&*(){}[]=<>/,.'
+    return symbols[Math.floor(Math.random() * symbols.length)];
+}
+
 //Object of 4 criteria
 var randomFunc = {
     upper: RandomUpper,
@@ -19,12 +36,10 @@ function generatePassword(upper, lower, number, symbol, length) {
     var typesCount = upper + lower + number + symbol;
     var typesArr = [{ upper }, { lower }, { number }, { symbol }].filter(item => Object.values(item)[0]);
 
-    // Doesn't have a selected type
     if (typesCount === 0) {
         return '';
     }
 
-    // create a loop
     for (var i = 0; i < length; i += typesCount) {
         typesArr.forEach(type => {
             var funcName = Object.keys(type)[0];
@@ -59,18 +74,4 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-function RandomUpper() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-}
-function RandomLower() {
-    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-}
 
-function RandomNumber() {
-    return +String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-}
-
-function RandomSymbol() {
-    var symbols = '!@#$%^&*(){}[]=<>/,.'
-    return symbols[Math.floor(Math.random() * symbols.length)];
-}
